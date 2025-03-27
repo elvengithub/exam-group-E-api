@@ -21,6 +21,14 @@ router.put('/exams/:id', (req, res) => {
   }
 });
 
+router.get('/exam-group', (req,res) => 
+  res.json({message: "Group E API"})
+)
+
+router.get('/exams', (req, res) =>
+  res.json(exams)
+)
+
 
 
 
