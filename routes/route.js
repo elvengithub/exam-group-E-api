@@ -7,10 +7,20 @@ const exams = [
   { id: 2, name: 'Science Exam', date: '2025-03-26' }
 ];
 
-router.get('/exam-group', (req,res) => 
-  res.json({message: "Group E API"})
-)
+router.put('/exams/:id', (req, res) => {
+  const examId = parseInt(req.params.id);
+  const updatedData = req.body;
 
-router.get('/exams', (req, res) =>
-  res.json(exams)
-)
+  let exam = exams.find(e => e.id === examId);
+  if (exam) {
+    exam.name = updatedData.name || exam.name;
+    exam.date = updatedData.date || exam.date;
+    res.json(exam);
+  } else {
+    res.status(404).json({ error: 'Exam not found' });
+  }
+});
+
+
+
+
